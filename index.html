@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>GDL Test</title>
+</head>
+<body>
+  <button id="download-btn">Download</button>
+
+  <script type="module">
+    import { GDL } from './dist/gdl.es.js';
+
+    GDL.init({
+      buttonId: 'download-btn',
+      url: 'https://example.com/file.apk',
+      waitTime: 5,
+      messages: {
+        waiting: "Preparing download...",
+        ready: "Download ready!"
+      }
+    });
+  </script>
+</body>
+</html>
