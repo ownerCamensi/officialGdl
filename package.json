@@ -1,6 +1,6 @@
 {
   "name": "gdl-lib",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Official GDL JavaScript Library",
   "main": "dist/gdl.umd.js",
   "module": "dist/gdl.es.js",
