@@ -11,7 +11,11 @@
     "test": "vitest",
     "lint": "eslint src --fix"
   },
-  "keywords": ["gdl", "download", "library"],
+  "keywords": [
+    "gdl",
+    "download",
+    "library"
+  ],
   "author": "Manny Camensi Palasol",
   "license": "MIT",
   "devDependencies": {
@@ -19,6 +23,7 @@
     "prettier": "^3.5.3",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.1.4"
   }
 }
