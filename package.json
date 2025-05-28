@@ -1,17 +1,19 @@
 {
   "name": "gdl-lib",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Official GDL JavaScript Library",
+  "main": "dist/gdl.umd.js",
+  "module": "dist/gdl.es.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "test": "vitest",
-  "lint": "eslint src --fix"
-},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest",
+    "lint": "eslint src --fix"
+  },
+  "keywords": ["gdl", "download", "library"],
+  "author": "Manny Camensi Palasol",
+  "license": "MIT",
   "devDependencies": {
     "eslint": "^9.27.0",
     "prettier": "^3.5.3",
