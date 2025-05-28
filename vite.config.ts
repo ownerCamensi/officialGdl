@@ -19,7 +19,8 @@ export default defineConfig({
     rollupOptions: {
       external: [],
       output: {
-        globals: {}
+        globals: {},
+        exports: 'named'  // This line fixes default+named export warning
       }
     },
     minify: 'terser',
