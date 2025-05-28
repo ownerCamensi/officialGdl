@@ -1,24 +1,38 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
+  plugins: [
+    dts({
+      insertTypesEntry: true,
+      include: ['src/index.ts']
+    })
+  ],
   build: {
     lib: {
-      entry: 'src/index.ts',
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'GDL',
       fileName: (format) => `gdl.${format}.js`,
       formats: ['es', 'umd']
     },
     rollupOptions: {
+      external: [],
       output: {
-        globals: {
-          // Add external libs here if needed
-        },
-      },
+        globals: {}
+      }
     },
+    minify: 'terser',
+    sourcemap: true
   },
-  plugins: [dts({
-    outputDir: 'dist',
-    insertTypesEntry: true,
-  })],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "./src/styles/_themes.scss";
+          @import "./src/styles/_animations.scss";
+        `
+      }
+    }
+  }
 });

@@ -1,0 +1,18 @@
+.gdl-dark {
+  background-color: #2d3748;
+  color: #f7fafc;
+  border: 1px solid #4a5568;
+  
+  &:hover {
+    background-color: #4a5568;
+  }
+  
+  &:disabled {
+    background-color: #1a202c;
+    color: #a0aec0;
+  }
+}
+
+.gdl-file-icon {
+  margin-right: 0.5rem;
+}
