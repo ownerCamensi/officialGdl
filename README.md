@@ -15,17 +15,52 @@ GDL is a lightweight JavaScript library designed to simplify file downloads with
 ## Usage
 
 ```html
-<button id="download-btn">Download</button>
-<script type="module">
-  import { GDL } from './dist/gdl.es.js';
-
-  GDL.init({
-    buttonId: 'download-btn',
-    url: 'https://example.com/file.apk',
-    waitTime: 5,
-    messages: {
-      waiting: "Preparing download...",
-      ready: "Download ready!"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GDL Example</title>
+  <script src="https://unpkg.com/gdl-lib@1.1.0/dist/gdl.umd.js"></script>
+  <style>
+    #download-btn {
+      padding: 12px 24px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
     }
-  });
-</script>
+  </style>
+</head>
+<body>
+  <button id="download-btn">Download Game</button>
+
+  <script>
+    GDL.initDownload({
+      buttonId: 'download-btn',
+      url: 'https://example.com/game.zip',
+      waitTime: 5,
+      messages: {
+        waiting: 'Preparing awesome game...',
+        ready: 'INSTALL NOW!'
+      },
+      enableSound: true,
+      enableVibration: true,
+      theme: 'auto',
+      analytics: {
+        gaTrackingId: 'UA-XXXXX-Y',
+        customTracker: (event) => {
+          console.log('Download event:', event);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
+# my via unpkg cdn
+
+<script src="https://unpkg.com/gdl-lib@1.1.0/dist/gdl.umd.js"></script>
+
+
+#Manny Camensi Palasol
+-- fb
+https://www.facebook.com/profile.php?id=100076755627417
