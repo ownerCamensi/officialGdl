@@ -147,7 +147,7 @@ class GameDownloadLib extends EventEmitter {
   }
 
   async initDownload(config: GDLConfig) {
-    const button = document.getElementById(config.buttonId);
+    const button = document.getElementById(config.buttonId) as HTMLButtonElement | null;
     if (!button) {
       console.warn(`Button with id "${config.buttonId}" not found`);
       return;
@@ -165,7 +165,7 @@ class GameDownloadLib extends EventEmitter {
       theme = 'auto',
       analytics,
       url,
-      urls,
+      urls = [],
       showProgress = false,
       progressCallback,
       showFileSize = true,
@@ -181,7 +181,7 @@ class GameDownloadLib extends EventEmitter {
     button.textContent = messages.waiting;
 
     // Icon based on file extension (use first URL or single url)
-    const fileName = urls ? urls[0] : url;
+    const fileName = urls.length > 0 ? urls[0] : url;
     const fileType = fileName?.split('.').pop()?.toLowerCase() || '';
     const icons: Record<string, string> = {
       apk: '📱',
@@ -206,7 +206,7 @@ class GameDownloadLib extends EventEmitter {
 
     // Get file size if enabled
     let fileSize = 0;
-    if (showFileSize && (url || urls?.[0])) {
+    if (showFileSize && (url || urls.length > 0)) {
       try {
         fileSize = await GameDownloadLib.getFileSize(url || urls[0]);
       } catch (e) {
@@ -235,7 +235,7 @@ class GameDownloadLib extends EventEmitter {
         // Analytics event ready
         if (analytics?.gaTrackingId && (window as any).gtag) {
           (window as any).gtag('event', 'download_ready', {
-            file_url: url || urls?.join(','),
+            file_url: url || urls.join(','),
             file_size: fileSize
           });
         }
@@ -247,9 +247,9 @@ class GameDownloadLib extends EventEmitter {
       if (button.disabled) return;
 
       // If showing progress, handle download differently
-      if (showProgress && (url || (urls && urls.length === 1))) {
+      if (showProgress && (url || urls.length === 1)) {
         button.disabled = true;
-        const downloadUrl = url || urls[0]!;
+        const downloadUrl = url || urls[0];
         updateButton(messages.downloading || 'Downloading...', '0%');
 
         try {
@@ -291,11 +291,13 @@ class GameDownloadLib extends EventEmitter {
         }
       } else {
         // Original download behavior for multiple files or when progress not enabled
-        if (urls && urls.length > 1) {
+        if (urls.length > 1) {
           // Multi-file download: open each url in new tab
           urls.forEach(u => window.open(u, '_blank'));
         } else if (url) {
           window.location.href = url;
+        } else if (urls.length === 1) {
+          window.location.href = urls[0];
         } else {
           console.warn('No download URL provided');
           return;
@@ -307,7 +309,7 @@ class GameDownloadLib extends EventEmitter {
       // Analytics event download click
       if (analytics?.gaTrackingId && (window as any).gtag) {
         (window as any).gtag('event', 'download_click', {
-          file_url: url || urls?.join(','),
+          file_url: url || urls.join(','),
           file_size: fileSize
         });
       }
