@@ -11,6 +11,13 @@ GDL is a lightweight JavaScript library designed to simplify file downloads with
 - Easy to use
 - Custom messages
 - Works with buttons and links
+## New features 
+-- Version 1.2.0
+-- updated 
+-- bug fixes 
+-- add more features 
+-- fixed npm bugs 
+-- add more tracking or detecting file size device type 
 
 ## Usage
 
